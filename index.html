@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f5f7f5"><meta name="description" content="记录体重与腹围，看见每一点进步。"><title>轻记 · 身体记录</title><link rel="stylesheet" href="/styles.css"></head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#overview"><span class="brand-icon">↗</span><span>轻记<small>BODY JOURNAL</small></span></a>
+    <div class="nav-caption">我的空间</div>
+    <nav><a href="#overview" class="active"><span>▦</span>身体概览</a><a href="#history"><span>▤</span>记录历史</a><button id="goal-nav"><span>◎</span>我的目标</button></nav>
+    <div class="sidebar-bottom"><div class="small-mark">✳</div><p>改变，从记录开始。</p><span>专注自己的节奏，每一步都算数。</span><div class="local-label"><i></i> 数据仅保存在此浏览器</div></div>
+  </aside>
+  <main id="overview">
+    <header><div class="breadcrumb">我的空间 <span>/</span> 身体概览</div><div class="header-right"><span id="today-label"></span><span class="avatar">我</span></div></header>
+    <div class="content">
+      <section class="page-heading"><div><div class="eyebrow">A LITTLE BETTER, EVERY DAY</div><h1>看见自己的进步<span>。</span></h1><p>记录体重与腹围，让每一次坚持都有迹可循。</p></div><button class="primary" id="add-top"><b>＋</b> 添加记录</button></section>
+      <section class="stats" aria-label="身体数据概览">
+        <article class="stat"><div class="stat-title">当前体重 <span class="stat-symbol">⚖</span></div><div class="stat-value"><strong id="latest-weight">—</strong><span>kg</span></div><div class="stat-footer" id="weight-change">从第一条记录开始了解自己</div><div class="mini-line green"></div></article>
+        <article class="stat"><div class="stat-title">当前腹围 <span class="stat-symbol lilac">⌁</span></div><div class="stat-value"><strong id="latest-waist">—</strong><span>cm</span></div><div class="stat-footer" id="waist-change">每一点变化，都值得记录</div><div class="mini-line purple"></div></article>
+        <article class="stat"><div class="stat-title">累计记录 <span class="stat-symbol beige">▦</span></div><div class="stat-value"><strong id="record-count">0</strong><span>天</span></div><div class="stat-footer" id="record-span">今天，是一个很好的开始</div><div class="day-dots" id="day-dots"></div></article>
+      </section>
+      <div class="main-grid">
+        <section class="panel chart-panel"><div class="panel-heading"><div><h2>身体变化趋势</h2><p>慢慢来，变化正在发生</p></div><div class="segmented" id="range-picker"><button data-range="7">近 7 天</button><button data-range="30" class="selected">近 30 天</button><button data-range="0">全部</button></div></div><div class="legend"><span><i class="green-dot"></i>体重 <small>kg</small></span><span><i class="purple-dot"></i>腹围 <small>cm</small></span></div><div id="chart" class="chart" aria-label="体重与腹围趋势图"></div><div class="chart-caption"><span>✧</span> 比起每天的数字，长期的趋势更有意义。</div></section>
+        <section class="panel quick-panel"><div class="panel-heading"><div><h2>记录今天</h2><p>给今天的自己留一个脚印</p></div><span class="sun">☀</span></div><form id="quick-form"><label for="quick-date">记录日期</label><input id="quick-date" name="date" type="date" required><div class="input-pair"><div><label for="quick-weight">体重</label><div class="unit-input"><input id="quick-weight" name="weight" type="number" min="1" max="500" step="0.1" placeholder="0.0" required><span>kg</span></div></div><div><label for="quick-waist">腹围</label><div class="unit-input"><input id="quick-waist" name="waist" type="number" min="1" max="300" step="0.1" placeholder="0.0" required><span>cm</span></div></div></div><label for="quick-note">今日备注 <small>选填</small></label><input id="quick-note" name="note" maxlength="120" placeholder="训练、饮食，或今天的心情…"><button class="primary save-button" type="submit">＋ 保存今日记录</button><p class="form-hint">建议在相近的时间与条件下测量</p></form></section>
+      </div>
+      <section class="goal-strip"><div class="goal-icon">◎</div><div class="goal-copy"><h3>每一个小目标，都在靠近更好的自己</h3><p id="goal-description">设定你的体重与腹围目标，按自己的节奏前进。</p></div><button class="text-button" id="edit-goals">设置目标 <span>↗</span></button></section>
+      <section class="panel history-panel" id="history"><div class="panel-heading"><div><h2>记录历史 <span class="count-badge" id="history-count">0</span></h2><p>一点一滴，都是你的成长轨迹</p></div><button class="secondary" id="export"><span>↓</span> 导出数据</button></div><div class="table-wrap"><table><thead><tr><th>日期</th><th>体重 <small>(kg)</small></th><th>腹围 <small>(cm)</small></th><th>备注</th><th class="right">操作</th></tr></thead><tbody id="records"></tbody></table></div><div class="table-footer"><span id="table-summary">还没有记录</span><div><button id="prev-page" aria-label="上一页">‹</button><span id="page-label">1 / 1</span><button id="next-page" aria-label="下一页">›</button></div></div></section>
+      <footer>轻记 BODY JOURNAL <span>·</span> 记录自己，悦纳自己。<span class="footer-right">你的数据，属于你自己。</span></footer>
+    </div>
+  </main>
+  <dialog id="record-dialog"><form id="record-form"><div class="dialog-heading"><h2 id="dialog-title">添加记录</h2><button type="button" class="close" data-close="record-dialog" aria-label="关闭">×</button></div><input name="originalDate" type="hidden"><label for="edit-date">日期</label><input name="date" id="edit-date" type="date" required><div class="input-pair"><div><label for="edit-weight">体重（kg）</label><input name="weight" id="edit-weight" type="number" min="1" max="500" step="0.1" required></div><div><label for="edit-waist">腹围（cm）</label><input name="waist" id="edit-waist" type="number" min="1" max="300" step="0.1" required></div></div><label for="edit-note">备注</label><input name="note" id="edit-note" maxlength="120" placeholder="今天的状态…"><button class="primary save-button">保存记录</button></form></dialog>
+  <dialog id="goal-dialog"><form id="goal-form"><div class="dialog-heading"><h2>我的目标</h2><button type="button" class="close" data-close="goal-dialog" aria-label="关闭">×</button></div><p class="muted">根据自己的情况设定目标，留空可取消。</p><label for="goal-weight">目标体重（kg）</label><input id="goal-weight" name="weight" type="number" min="1" max="500" step="0.1"><label for="goal-waist">目标腹围（cm）</label><input id="goal-waist" name="waist" type="number" min="1" max="300" step="0.1"><button class="primary save-button">保存目标</button></form></dialog>
+  <dialog id="confirm-dialog"><form method="dialog"><div class="dialog-heading"><h2 id="confirm-title">确认操作</h2></div><p id="confirm-message"></p><div class="confirm-actions"><button class="secondary" value="cancel">取消</button><button class="primary" value="confirm">确认</button></div></form></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="/app.js"></script>
+</body></html>
